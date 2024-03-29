@@ -55,7 +55,6 @@ public class VehicleController {
         vehicleRepository.save(s);
         return "redirect:/index?page="+page+"&size="+size+"&search="+search;
 
-
     }
     @GetMapping(path = "/")
     public String homePage(){

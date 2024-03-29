@@ -14,31 +14,53 @@
 </head>
 <body>
 <div class="container mt-5">
-    <button class="btn btn-primary btn-action">ADD</button>
-
+    <button class="btn btn-primary btn-action" aria-current="page" href="/create">ADD</button>
+    <form method="get", th:action="@{index}">
+        <input type="text" name="search" th:value="${searchName}">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
     <table class="table table-bordered">
         <thead class="table-dark">
         <tr>
             <th>ID</th>
             <th>Make</th>
             <th>Model</th>
+            <th>YEAR</th>
+            <th>COLOR</th>
             <th>ACTIONS</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="s:${listVehicles}">
+        <tr th:each="s:${pageVehicules}">
             <td th:text="${s.id}"></td>
             <td th:text="${s.make}"></td>
             <td th:text="${s.model}"></td>
+            <td th:text="${s.year}"></td>
+            <td th:text="${s.color}"></td>
+
             <td>
-                <!-- Update Button -->
-                <button class="btn btn-primary btn-action"  >Update</button>
-                <!-- Delete Button -->
-                <button class="btn btn-danger btn-action"  >Delete</button>
+                <a class="btn btn-danger"
+                   th:href="@{delete(page=${currentPage}, size=${size}, search=${searchName}, id=${s.id})}"> Delete </a>
+
+                <a class="btn btn-outline-dark"
+                   th:href="@{edit(page=${currentPage}, size=${size}, search=${searchName}, id=${s.id})}"> Edit </a>
             </td>
         </tr>
         </tbody>
     </table>
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li class="nav-item me-2"
+                th:each="p:${tabPages}" >
+                <a th:text="${p+1}"
+                   th:class="${p==currentPage? 'btn btn-primary' : 'btn btn-outline-primary'}"
+                   th:href="@{index(page=${p}, size=${size}, search=${searchName})}"></a>
+            </li>
+
+
+        </ul>
+
+    </div>
 </div>
 </body>
 </html>

@@ -18,6 +18,8 @@ public class Vehicle {
     private Long id;
     private String make;
     private String model;
+    private int year;
+    private String color;
 
     @OneToMany()
     Collection<Rental> rentals;

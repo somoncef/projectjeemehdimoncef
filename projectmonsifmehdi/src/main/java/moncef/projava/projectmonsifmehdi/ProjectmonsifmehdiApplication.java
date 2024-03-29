@@ -20,11 +20,13 @@ class ProjectmonsifmehdiApplication  implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+/*
 
         vehicleRepository.save(new Vehicle(null,"Hamid","Ahmed",null));
         vehicleRepository.save(new Vehicle(null,"solomi","khaled",null));
         vehicleRepository.save(new Vehicle(null,"dreees","moad",null));
         vehicleRepository.save(new Vehicle(null,"moncef","souri",null));
+*/
 
     }
 
