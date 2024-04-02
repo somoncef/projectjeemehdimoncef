@@ -17,12 +17,22 @@
             <div class="card-header">Add New Vehicule</div>
             <form method="post" th:action="@{save}">
                 <div class="mb-3">
-                    <label for ="make" class="form-control">String</label>
+                    <label for ="make" class="form-control">Mark</label>
                     <input id ="make" type="text" name="make" th:value="${Vehicle.make}">
                 </div>
                 <div class="mb-3">
                     <label for ="model" class="form-control">model</label>
                     <input id ="model" type="text" name="model" th:value="${Vehicle.model}">
+
+                </div>
+                <div class="mb-3">
+                    <label for ="color" class="form-control">Color</label>
+                    <input id ="color" type="text" name="color" th:value="${Vehicle.color}">
+
+                </div>
+                <div class="mb-3">
+                    <label for ="year" class="form-control">Year</label>
+                    <input id ="year" type="text" name="year" th:value="${Vehicle.year}">
 
                 </div>
 

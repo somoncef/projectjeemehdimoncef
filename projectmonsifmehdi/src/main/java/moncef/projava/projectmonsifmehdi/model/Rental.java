@@ -24,6 +24,7 @@ public class Rental {
     @ManyToOne
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
+    private Double totalCost;
 
     private String rentalDate;
     private String returnDate;

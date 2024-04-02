@@ -20,6 +20,8 @@ public class Vehicle {
     private String model;
     private int year;
     private String color;
+    private Boolean rented = false;
+    private Float pricePerDay;
 
     @OneToMany()
     Collection<Rental> rentals;

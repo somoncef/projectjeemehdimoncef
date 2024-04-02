@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="menu">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Vehicle</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="p-3">
+        <div class="card">
+            <div class="card-header">Edit Vehicle</div>
+            <form method="post" th:action="@{/save}">
+
+                <input id="id" name="id" th:value="${vehicle.id}" readonly>
+                <input type="hidden" name="currentPage" th:value="${currentPage}">
+                <input type="hidden" name="size" th:value="${size}">
+                <input type="hidden" name="searchName" th:value="${searchName}">
+
+                <div class="mb-3">
+                    <label for="make" class="form-control">Make</label>
+                    <input id="make" type="text" name="make" th:value="${vehicle.make}">
+                </div>
+                <div class="mb-3">
+                    <label for="model" class="form-control">Model</label>
+                    <input id="model" type="text" name="model" th:value="${vehicle.model}">
+                </div>
+                <div class="mb-3">
+                    <label for="color" class="form-control">Color</label>
+                    <input id="color" type="text" name="color" th:value="${vehicle.color}">
+                </div>
+                <div class="mb-3">
+                    <label for="year" class="form-control">Year</label>
+                    <input id="year" type="text" name="year" th:value="${vehicle.year}">
+                </div>
+
+                <button class="btn btn-primary" type="submit">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
