@@ -15,7 +15,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Students</a>
+        <a class="navbar-brand" href="#">Rentals</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,13 +39,8 @@
     </div>
 </nav>
 <div class="container mt-5">
-<<<<<<< Updated upstream
-    <button class="btn btn-primary btn-action" aria-current="page" href="/create">ADD</button>
-    <form method="get" th:action="@{index}">
-=======
-     <form method="get", th:action="@{index}">
->>>>>>> Stashed changes
-        <input type="text" name="search" th:value="${searchName}">
+     <form method="get" th:action="@{index}">
+          <input type="text" name="search" th:value="${searchName}">
         <button class="btn btn-primary" type="submit">Search</button>
     </form>
     <table class="table table-bordered">
@@ -56,6 +51,8 @@
             <th>Model</th>
             <th>YEAR</th>
             <th>COLOR</th>
+            <th>pricePerDay</th>
+            <th>rented</th>
             <th>ACTIONS</th>
         </tr>
         </thead>
@@ -66,6 +63,10 @@
             <td th:text="${s.model}"></td>
             <td th:text="${s.year}"></td>
             <td th:text="${s.color}"></td>
+            <td th:text="${s.pricePerDay}"></td>
+            <td th:text="${s.rented}"></td>
+
+
 
             <td>
                 <a class="btn btn-danger"

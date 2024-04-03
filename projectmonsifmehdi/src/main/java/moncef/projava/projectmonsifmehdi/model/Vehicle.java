@@ -27,4 +27,5 @@ public class Vehicle {
     Collection<Rental> rentals;
 
 
+
 }

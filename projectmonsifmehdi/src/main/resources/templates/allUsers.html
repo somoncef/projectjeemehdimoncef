@@ -14,7 +14,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">clients</a>
+        <a class="navbar-brand" href="#">Rentals</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -48,16 +48,17 @@
             <th>ID</th>
             <th>Name</th>
             <th>Email</th>
+            <th>rentals</th>
             <th>Actions</th>
-
-
         </tr>
         </thead>
         <tbody>
         <tr th:each="s:${pageclients}">
             <td th:text="${s.id}"></td>
             <td th:text="${s.name}"></td>
-            <td th:text="${s.email}"></td>
+            <td th:text="${s.email}">
+            <td th:text="${s.rentals}"></td>
+
             <td>
                 <a class="btn btn-danger"
                    th:href="@{delete(page=${currentPage}, size=${size}, search=${searchName}, id=${s.id})}"> Delete </a>

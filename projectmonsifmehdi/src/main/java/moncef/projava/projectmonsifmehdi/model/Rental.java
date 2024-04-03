@@ -26,9 +26,16 @@ public class Rental {
     private Vehicle vehicle;
     private Double totalCost;
 
-    private String rentalDate;
-    private String returnDate;
+    private Date rentalDate;
+    private Date returnDate;
 
-
+    public void calculateTotalCost() {
+        if (rentalDate == null || returnDate == null || vehicle == null || vehicle.getPricePerDay() == null) {
+            return;
+        }
+        long diffInMilliseconds = returnDate.getTime() - rentalDate.getTime();
+        long diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMilliseconds);
+        setTotalCost((double) (vehicle.getPricePerDay()* diffInDays));
+    }
 }
 
