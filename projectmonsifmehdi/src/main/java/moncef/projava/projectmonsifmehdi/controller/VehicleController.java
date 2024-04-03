@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -57,9 +58,22 @@ public class VehicleController {
 
     }
     @GetMapping(path = "/")
-    public String homePage(){
+    public String homePage(Model model, @RequestParam(name = "filter", defaultValue = "All") int filter) {
+        List<Vehicle> vehicles;
+        if (filter == 1) {
+            vehicles = vehicleRepository.findByRented(true);
+        } else if (filter == 0) {
+            vehicles = vehicleRepository.findByRented(false);
+        } else {
+            vehicles = vehicleRepository.findAll();
+        }
+        model.addAttribute("vehicles", vehicles);
+        model.addAttribute("filter", filter); // Add the selected filter to the model
         return "/Menu";
     }
+
+
+
     @GetMapping(path="/delete")
     public String deletevehicul(
             int page, int size, String search,

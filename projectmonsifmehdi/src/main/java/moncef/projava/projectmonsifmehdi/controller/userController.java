@@ -24,7 +24,7 @@ public class userController {
                            @RequestParam(name = "size", defaultValue = "3") int size,
                            @RequestParam(name="search", defaultValue = "") String searchName){
 
-        Page<User> pageclients = userRepository.findBynameContains(searchName, PageRequest.of(page, size));
+        Page<User> pageclients = userRepository.findByNameContains(searchName, PageRequest.of(page, size));
 
 
         int[] pages = new int[pageclients.getTotalPages()];

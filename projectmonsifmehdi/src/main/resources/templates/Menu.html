@@ -34,6 +34,8 @@
         </div>
     </div>
 </nav>
+<option th:each="option : ${filterOptions}" th:value="${option}" th:text="${#strings.equals(option, 1) ? 'Rented' : 'Not Rented'}">All</option>
+
 
 
 <section layout:fragment="content">  </section>

@@ -7,5 +7,5 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User,Long> {
-    Page<User> findBynameContains(String name, PageRequest pageable);
+    Page<User> findByNameContains(String name, PageRequest pageable);
 }
