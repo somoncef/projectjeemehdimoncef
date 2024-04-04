@@ -25,6 +25,4 @@ public class Vehicle {
     @OneToMany(mappedBy = "vehicle")
     private Collection<Rental> rentals;
 
-
-
 }

@@ -60,7 +60,7 @@ public class RentalController {
         }
         List<User> users =new ArrayList<>();
         if (userRepository != null) {
-            users = userRepository.findAll();
+            users = userRepository.findByHasActiveRentalFalse();
         }
 
         model.addAttribute("rental", rental);
@@ -147,7 +147,8 @@ public class RentalController {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));
 
-        vehicle.setRented(true);
+        vehicle.setRented(false);
+        user.setHasActiveRental(false);
         vehicleRepository.save(vehicle);
 
         user.getRentals().remove(rental);

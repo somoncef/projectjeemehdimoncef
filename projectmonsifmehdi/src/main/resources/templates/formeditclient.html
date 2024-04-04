@@ -29,6 +29,10 @@
                     <label for="email" class="form-control">Model</label>
                     <input id="email" type="email" name="email" th:value="${user.email}">
                 </div>
+                <div class="mb-3">
+                    <label for="hasActiveRental">hasActiveRental</label>
+                    <input id="hasActiveRental" type="checkbox" name="hasActiveRental" th:checked="${user.hasActiveRental}">
+                </div>
                 <button class="btn btn-primary" type="submit">Update</button>
             </form>
         </div>

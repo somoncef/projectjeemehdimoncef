@@ -12,7 +12,8 @@ import java.util.List;
 
 public interface UserRepository extends JpaRepository<User,Long> {
     Page<User> findByNameContains(String name, PageRequest pageable);
-
+    @Query("SELECT u FROM User u WHERE u.hasActiveRental = false")
+    List<User> findByHasActiveRentalFalse();
 
 
 }

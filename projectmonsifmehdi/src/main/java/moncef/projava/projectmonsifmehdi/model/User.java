@@ -19,6 +19,8 @@ public class User {
     private Long id;
     private String name;
     private String email;
+    private Boolean hasActiveRental=false;
+
 
     @OneToMany(mappedBy = "user" )
     private Collection<Rental> rentals;
