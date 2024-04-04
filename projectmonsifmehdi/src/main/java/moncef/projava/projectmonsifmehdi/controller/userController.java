@@ -64,7 +64,8 @@ public class userController {
             int page, int size, String search,
             @RequestParam(name="id") Long id){
         User user = userRepository.findById(id).orElse(null);
-
+        if (user != null && user.getRentals()!=null)
+            return "redirect:/client/index?page="+page+"&size="+size+"&search="+search;
         userRepository.deleteById(id);
         return "redirect:/client/index?page="+page+"&size="+size+"&search="+search;
     }

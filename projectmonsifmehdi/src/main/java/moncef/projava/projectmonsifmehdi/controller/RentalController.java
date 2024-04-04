@@ -103,7 +103,7 @@ public class RentalController {
 
         // Associer la location à l'utilisateur
         user.getRentals().add(rental);
-       
+
 
         // Sauvegarder d'abord l'utilisateur et le véhicule, puis la location dans la base de données
         userRepository.save(user);
