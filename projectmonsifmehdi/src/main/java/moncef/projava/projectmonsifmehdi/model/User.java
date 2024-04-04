@@ -20,7 +20,11 @@ public class User {
     private String name;
     private String email;
 
-    @OneToMany()
-    Collection<Rental> rentals;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Collection<Rental> rentals;
+
+
+
+
 
 }

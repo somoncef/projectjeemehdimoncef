@@ -68,9 +68,11 @@ public class VehicleController {
     }
 
     @GetMapping(path = "/edit")
-    public String editvehicle(Model model , int page, int size, String search, long id){
+    public String editVehicle(Model model, int page, int size, String search, Long id) {
         Vehicle vehicle = vehicleRepository.findById(id).orElse(null);
-        if(vehicle == null) throw new RuntimeException("Erreur");
+        if (vehicle == null) {
+            throw new RuntimeException("Erreur");
+        }
         model.addAttribute("vehicle", vehicle);
         model.addAttribute("size", size);
         model.addAttribute("currentPage", page);

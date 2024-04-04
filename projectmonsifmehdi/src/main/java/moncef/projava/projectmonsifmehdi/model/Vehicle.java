@@ -22,9 +22,8 @@ public class Vehicle {
     private String color;
     private Boolean rented=false;
     private Float pricePerDay = 0f;
-
-    @OneToMany()
-    Collection<Rental> rentals;
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL)
+    private Collection<Rental> rentals;
 
 
 
