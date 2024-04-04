@@ -30,12 +30,13 @@ public class Rental {
     private Date returnDate;
 
     public void calculateTotalCost() {
-        if (rentalDate == null || returnDate == null || vehicle == null || vehicle.getPricePerDay() == null) {
-            return;
+        if (vehicle.getPricePerDay() == null) {
+            throw new IllegalStateException("Price per day is not set for the vehicle.");
         }
+
         long diffInMilliseconds = returnDate.getTime() - rentalDate.getTime();
         long diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMilliseconds);
-        setTotalCost((double) (vehicle.getPricePerDay()* diffInDays));
+        setTotalCost((double) (vehicle.getPricePerDay() * diffInDays));
     }
 
     public Long getId() {

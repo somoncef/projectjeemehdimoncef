@@ -20,7 +20,7 @@ public class VehicleController {
     @GetMapping(path="/index")
     public String findcars(Model model,
                            @RequestParam(name = "page", defaultValue = "0") int page,
-                           @RequestParam(name = "size", defaultValue = "3") int size,
+                           @RequestParam(name = "size", defaultValue = "7") int size,
                            @RequestParam(name="search", defaultValue = "") String searchName){
 
         Page<Vehicle> pageVehicules = vehicleRepository.findByMakeContains(searchName, PageRequest.of(page,size));
@@ -47,7 +47,7 @@ public class VehicleController {
     @PostMapping(path = "/save")
     public String saveStudent(Model model, Vehicle s,
                               @RequestParam(name="currentPage", defaultValue = "0") int page,
-                              @RequestParam(name="size", defaultValue = "3") int size,
+                              @RequestParam(name="size", defaultValue = "7") int size,
                               @RequestParam(name="searchName", defaultValue = "") String search){
         vehicleRepository.save(s);
         return "redirect:/index?page="+page+"&size="+size+"&search="+search;
@@ -57,13 +57,18 @@ public class VehicleController {
     public String deletevehicle(
             int page, int size, String search,
             @RequestParam(name="id") Long id){
+        Vehicle vehicle =vehicleRepository.findById(id).orElse(null);
+
+        if(vehicle != null && vehicle.getRented())
+            return "redirect:/index?page="+page+"&size="+size+"&search="+search;
+
         vehicleRepository.deleteById(id);
 
         return "redirect:/index?page="+page+"&size="+size+"&search="+search;
     }
 
     @GetMapping(path = "/edit")
-    public String editStudent(Model model , int page, int size, String search, long id){
+    public String editvehicle(Model model , int page, int size, String search, long id){
         Vehicle vehicle = vehicleRepository.findById(id).orElse(null);
         if(vehicle == null) throw new RuntimeException("Erreur");
         model.addAttribute("vehicle", vehicle);
@@ -76,10 +81,7 @@ public class VehicleController {
 
     @GetMapping(path = "/")
     public String homePage(Model model) {
-        // Ajoutez ici le code pour récupérer le menu ou toute autre logique si nécessaire
-
-        // Return the name of the Thymeleaf template
-        return "Menu"; // Supposons que le nom du template Thymeleaf est "Menu.html"
+        return "Menu";
     }
 }
 

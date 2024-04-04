@@ -38,14 +38,12 @@
                     <input id="year" type="text" name="year" th:value="${vehicle.year}">
                 </div>
                 <div class="mb-3">
-                    <label for ="rented" class="form-control">rented</label>
-                    <input id ="rented" type="checkbox" name="rented" th:value="${Vehicle.rented}">
-
+                    <label for="rented">Rented</label>
+                    <input id="rented" type="checkbox" name="rented" th:checked="${vehicle.rented}">
                 </div>
-                <div class="mb-3">c
-                    <label for ="pricePerDay" class="form-control">pricePerDay</label>
-                    <input id ="pricePerDay" type="text" name="pricePerDay" th:value="${Vehicle.pricePerDay}">
-
+                <div class="mb-3">
+                    <label for="pricePerDay">Price Per Day</label>
+                    <input id="pricePerDay" type="text" name="pricePerDay" th:value="${vehicle.pricePerDay}">
                 </div>
 
                 <button class="btn btn-primary" type="submit">Update</button>

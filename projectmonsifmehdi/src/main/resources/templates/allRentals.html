@@ -22,6 +22,18 @@
         <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                 <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/index">All Vehicles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/create">new Vehicles</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/client/index">All client</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/client/create">new client</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/rentals/index">All Rentals</a>
                 </li>
                 <li class="nav-item">
@@ -49,11 +61,21 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="rental : ${pageRentals}">
-            <td th:text="${rental.id}"></td>
+        <tr th:each="s:${pageRentals}">
+            <td th:text="${s.id}"></td>
+            <td th:text="${s.user.name}"></td>
+            <td th:text="${s.vehicle.make}"></td>
+            <td th:text="${s.totalCost}"></td>
+            <td th:text="${s.rentalDate}"></td>
+            <td th:text="${s.returnDate}"></td>
 
+            <td>
+                <a class="btn btn-danger"
+                   th:href="@{delete(page=${currentPage}, size=${size}, search=${searchName}, id=${s.id})}"> Delete </a>
 
-
+                <a class="btn btn-outline-dark"
+                   th:href="@{edit(page=${currentPage}, size=${size}, search=${searchName}, id=${s.id})}"> Edit </a>
+            </td>
         </tr>
         </tbody>
     </table>

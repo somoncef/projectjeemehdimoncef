@@ -4,6 +4,19 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="menu">
 <head>
+    <style>
+        label {
+            display: block;
+            font:
+                    1rem 'Fira Sans',
+                    sans-serif;
+        }
+
+        input,
+        label {
+            margin: 0.4rem 0;
+        }
+    </style>
     <meta charset="UTF-8">
     <title>New Rental</title>
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
@@ -17,7 +30,7 @@
                 <div class="mb-3">
                     <label for="user" class="form-control">User</label>
                     <select id="user" name="user" th:field="*{user.id}">
-                        <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.username}"></option>
+                        <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>
                     </select>
                 </div>
                 <div class="mb-3">
@@ -28,16 +41,34 @@
                 </div>
                 <div class="mb-3">
                     <label for="rentalDate" class="form-control">Rental Date</label>
-                    <input id="rentalDate" type="text" name="rentalDate" th:value="*{rentalDate}" placeholder="YYYY-MM-DD">
+                    <input type="date" id="rentalDate" name="rentalDate" />
+
                 </div>
                 <div class="mb-3">
                     <label for="returnDate" class="form-control">Return Date</label>
-                    <input id="returnDate" type="text" name="returnDate" th:value="*{returnDate}" placeholder="YYYY-MM-DD">
+                    <input type="date" id="returnDate" name="returnDate" />
+
                 </div>
                 <button class="btn btn-primary" type="submit">Create</button>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    // Get today's date in the format YYYY-MM-DD
+    var today = new Date().toISOString().split('T')[0];
+    // Set the minimum date for rentalDate as today
+    document.getElementById("rentalDate").value = today;
+
+    // Calculate today plus one day
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    var tomorrowFormatted = tomorrow.toISOString().split('T')[0];
+
+    // Set the minimum date for returnDate as today plus one day
+    document.getElementById("returnDate").value = tomorrowFormatted;
+</script>
+
 </body>
 </html>
