@@ -2,6 +2,7 @@ package moncef.projava.projectmonsifmehdi.controller;
 
 import moncef.projava.projectmonsifmehdi.model.Rental;
 import moncef.projava.projectmonsifmehdi.Repository.RentalRepository;
+import moncef.projava.projectmonsifmehdi.model.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -39,8 +40,9 @@ public class RentalController {
     public String createRental(Model model) {
         Rental rental = new Rental();
         model.addAttribute("rental", rental);
-        return "formAddRental";
+        return "Formaddrental";
     }
+
 
     @PostMapping("/save")
     public String saveRental(Model model, Rental rental,
@@ -48,6 +50,8 @@ public class RentalController {
                              @RequestParam(name = "size", defaultValue = "3") int size,
                              @RequestParam(name = "search", defaultValue = "") String search) {
         // Ajoutez ici la logique de sauvegarde de la location
+        rentalRepository.save(rental); // Save the rental object
+        model.addAttribute("rental", rental); // Add rental object as model attribute
         return "redirect:/rentals/index?page=" + page + "&size=" + size + "&search=" + search;
     }
 

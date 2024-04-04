@@ -11,12 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Arrays;
-import java.util.List;
-
 @Controller
-
 public class VehicleController {
+
     @Autowired
     VehicleRepository vehicleRepository;
 
@@ -28,11 +25,9 @@ public class VehicleController {
 
         Page<Vehicle> pageVehicules = vehicleRepository.findByMakeContains(searchName, PageRequest.of(page,size));
 
-
         int[] pages = new int[pageVehicules.getTotalPages()];
         for(int i=0; i<pages.length; i++)
             pages[i]=i;
-
 
         model.addAttribute("pageVehicules",pageVehicules.getContent());
         model.addAttribute("tabPages", pages);
@@ -41,13 +36,14 @@ public class VehicleController {
         model.addAttribute("searchName", searchName);
         return "allCars";
     }
+
     @GetMapping(path="/create")
     public String createVehicule(Model model){
         Vehicle vehicle = new Vehicle();
         model.addAttribute("Vehicle", vehicle);
         return "Formaddvehicule";
-
     }
+
     @PostMapping(path = "/save")
     public String saveStudent(Model model, Vehicle s,
                               @RequestParam(name="currentPage", defaultValue = "0") int page,
@@ -55,27 +51,10 @@ public class VehicleController {
                               @RequestParam(name="searchName", defaultValue = "") String search){
         vehicleRepository.save(s);
         return "redirect:/index?page="+page+"&size="+size+"&search="+search;
-
     }
-    @GetMapping(path = "/")
-    public String homePage(Model model, @RequestParam(name = "filter", defaultValue = "All") int filter) {
-        List<Vehicle> vehicles;
-        if (filter == 1) {
-            vehicles = vehicleRepository.findByRented(true);
-        } else if (filter == 0) {
-            vehicles = vehicleRepository.findByRented(false);
-        } else {
-            vehicles = vehicleRepository.findAll();
-        }
-        model.addAttribute("vehicles", vehicles);
-        model.addAttribute("filter", filter); // Add the selected filter to the model
-        return "/Menu";
-    }
-
-
 
     @GetMapping(path="/delete")
-    public String deletevehicul(
+    public String deletevehicle(
             int page, int size, String search,
             @RequestParam(name="id") Long id){
         vehicleRepository.deleteById(id);
@@ -93,6 +72,14 @@ public class VehicleController {
         model.addAttribute("searchName", search);
 
         return "Formeditvehicule";
+    }
+
+    @GetMapping(path = "/")
+    public String homePage(Model model) {
+        // Ajoutez ici le code pour récupérer le menu ou toute autre logique si nécessaire
+
+        // Return the name of the Thymeleaf template
+        return "Menu"; // Supposons que le nom du template Thymeleaf est "Menu.html"
     }
 }
 

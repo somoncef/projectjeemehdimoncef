@@ -5,14 +5,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Car Rentals</title>
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
 
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Rentals</a>
+        <a class="navbar-brand" href="/">Rentals</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,19 +22,24 @@
                     <a class="nav-link active" aria-current="page" href="/index">All Vehicles</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/create">new Vehicles</a>
+                    <a class="nav-link active" aria-current="page" href="/create">New Vehicle</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/client/index">All client</a>
+                    <a class="nav-link active" aria-current="page" href="/client/index">All clients</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/client/create">new client</a>
+                    <a class="nav-link active" aria-current="page" href="/client/create">New client</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/rentals/create">New Rental</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/rentals/index">All Rentals</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-<option th:each="option : ${filterOptions}" th:value="${option}" th:text="${#strings.equals(option, 1) ? 'Rented' : 'Not Rented'}">All</option>
 
 
 

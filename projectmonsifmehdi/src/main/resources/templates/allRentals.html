@@ -1,22 +1,38 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="menu">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List of Rentals </title>
+    <title>Liste des Locations</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
-         .btn-action {
+        /* Additional Custom Styles */
+        .btn-action {
             margin-right: 5px;
         }
     </style>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Rentals</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/rentals/index">All Rentals</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/rentals/create">New Rental</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <div class="container mt-5">
-    <button class="btn btn-primary btn-action" aria-current="page" href="/create">ADD</button>
-    <form method="get" th:action="@{index}">
+    <form method="get" th:action="@{/rentals/index}">
         <input type="text" name="search" th:value="${searchName}">
         <button class="btn btn-primary" type="submit">Search</button>
     </form>
@@ -25,27 +41,32 @@
         <tr>
             <th>ID</th>
             <th>User</th>
-            <th>Vehicule</th>
-            <th>rentalDate</th>
-            <th>returnDate</th>
-
+            <th>Vehicle</th>
+            <th>Total Cost</th>
+            <th>Rental Date</th>
+            <th>Return Date</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="s:${pageRentals}">
-            <td th:text="${s.id}"></td>
-            <td th:text="${s.user}"></td>
-            <td th:text="${s.vehicule}"></td>
-            <td th:text="${s.rentalDate}"></td>
-            <td th:text="${s.returnDate}"></td>
+        <tr th:each="rental : ${pageRentals}">
+            <td th:text="${rental.id}"></td>
 
-            <td>
-                <a class="btn btn-danger"
-                   th:href="@{delete(page=${currentPage}, size=${size}, search=${searchName}, id=${s.id})}"> Delete </a>
 
-                <a class="btn btn-outline-dark"
-                   th:href="@{edit(page=${currentPage}, size=${size}, search=${searchName}, id=${s.id})}"> Edit </a>
-            </td>
+
         </tr>
         </tbody>
     </table>
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li class="nav-item me-2"
+                th:each="p : ${tabPages}">
+                <a th:text="${p+1}"
+                   th:class="${p==currentPage? 'btn btn-primary' : 'btn btn-outline-primary'}"
+                   th:href="@{/rentals/index(page=${p}, size=${size}, search=${searchName})}"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
