@@ -22,7 +22,7 @@ public class Vehicle {
     private String color;
     private Boolean rented=false;
     private Float pricePerDay = 0f;
+
     @OneToMany(mappedBy = "vehicle")
     private Collection<Rental> rentals;
-
 }

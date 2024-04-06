@@ -76,41 +76,32 @@ public class RentalController {
                              @RequestParam(name = "currentPage", defaultValue = "0") int page,
                              @RequestParam(name = "size", defaultValue = "7") int size,
                              @RequestParam(name = "search", defaultValue = "") String search) {
-        // Vérifier si les dates de location et de retour sont valides
         Date currentDate = new Date();
         if (rental.getRentalDate().before(currentDate) || rental.getReturnDate().before(rental.getRentalDate())) {
-            // Gérer l'erreur : dates de location ou de retour invalides
             throw new InvalidRentalDatesException("Rental dates should be in the future");
         }
 
-        // Récupérer l'ID du véhicule et de l'utilisateur associés à la location
         Long vehicleId = rental.getVehicle().getId();
         Long userId = rental.getUser().getId();
 
-        // Récupérer les entités du véhicule et de l'utilisateur à partir de la base de données
         Vehicle vehicle = vehicleRepository.findById(vehicleId)
                 .orElseThrow(() -> new VehicleNotFoundException(vehicleId));
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));
 
-        // Assurer que le véhicule et l'utilisateur sont correctement associés à la location
         vehicle.setRented(true);
         vehicle.getRentals().add(rental);
         rental.setVehicle(vehicle);
 
-        // Calculer le coût total de la location
         rental.calculateTotalCost();
 
-        // Associer la location à l'utilisateur
         user.getRentals().add(rental);
 
 
-        // Sauvegarder d'abord l'utilisateur et le véhicule, puis la location dans la base de données
         userRepository.save(user);
         vehicleRepository.save(vehicle);
         rentalRepository.save(rental);
 
-        // Rediriger vers la page d'index des locations avec les paramètres de pagination
         return "redirect:/rentals/index?page=" + page + "&size=" + size + "&search=" + search;
     }
 

@@ -1,19 +1,14 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="menu">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="menu">
 <head>
     <style>
         label {
             display: block;
-            font:
-                    1rem 'Fira Sans',
-                    sans-serif;
+            font: 1rem 'Fira Sans', sans-serif;
         }
 
         input,
-        label {
+        select {
             margin: 0.4rem 0;
         }
     </style>
@@ -22,31 +17,31 @@
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
 </head>
 <body>
-<div layout:fragment="content">
+<div layout:fragment="content" class="container">
     <div class="p-3">
         <div class="card">
             <div class="card-header">Add New Rental</div>
-            <form method="post" th:action="@{/rentals/save}" th:object="${rental}">
+            <form method="post" th:action="@{/rentals/save}" th:object="${rental}" class="card-body">
                 <div class="mb-3">
-                    <label for="user" class="form-control">User</label>
-                    <select id="user" name="user" th:field="*{user.id}">
+                    <label for="user" class="form-label">User</label>
+                    <select id="user" name="user" th:field="*{user.id}" class="form-select">
                         <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="vehicle" class="form-control">Vehicle</label>
-                    <select id="vehicle" name="vehicle" th:field="*{vehicle.id}">
+                    <label for="vehicle" class="form-label">Vehicle</label>
+                    <select id="vehicle" name="vehicle" th:field="*{vehicle.id}" class="form-select">
                         <option th:each="vehicle : ${vehicles}" th:value="${vehicle.id}" th:text="${vehicle.make + ' ' + vehicle.model}"></option>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="rentalDate" class="form-control">Rental Date</label>
-                    <input type="date" id="rentalDate" name="rentalDate" required  />
+                    <label for="rentalDate" class="form-label">Rental Date</label>
+                    <input type="date" id="rentalDate" name="rentalDate" required class="form-control" />
 
                 </div>
                 <div class="mb-3">
-                    <label for="returnDate" class="form-control">Return Date</label>
-                    <input type="date" id="returnDate" name="returnDate" required />
+                    <label for="returnDate" class="form-label">Return Date</label>
+                    <input type="date" id="returnDate" name="returnDate" required class="form-control" />
 
                 </div>
                 <button class="btn btn-primary" type="submit">Create</button>

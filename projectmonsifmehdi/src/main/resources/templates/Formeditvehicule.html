@@ -37,9 +37,9 @@
                     <label for="year" class="form-control">Year</label>
                     <input id="year" type="text" name="year" th:value="${vehicle.year}">
                 </div>
-                <div class="mb-3">
+                <div  hidden="hidden" class="mb-3 hidden">
                     <label for="rented">Rented</label>
-                    <input id="rented" type="checkbox" name="rented" th:checked="${vehicle.rented}">
+                    <input hidden="hidden" id="rented" type="checkbox" name="rented" th:checked="${vehicle.rented}">
                 </div>
                 <div class="mb-3">
                     <label for="pricePerDay">Price Per Day</label>

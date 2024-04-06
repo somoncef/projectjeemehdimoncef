@@ -1,56 +1,42 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="menu">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="menu">
 <head>
     <meta charset="UTF-8">
-    <title>New Vehicule</title>
+    <title>New Vehicle</title>
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css">
-
-
 </head>
 <body>
-<div layout:fragment="content">
+<div layout:fragment="content" class="container">
     <div class="p-3">
         <div class="card">
-            <div class="card-header">Add New Vehicule</div>
-            <form method="post" th:action="@{save}">
+            <div class="card-header">Add New Vehicle</div>
+            <form method="post" th:action="@{save}" class="card-body">
                 <div class="mb-3">
-                    <label for ="make" class="form-control">Mark</label>
-                    <input id ="make" type="text" name="make" th:value="${Vehicle.make}">
+                    <label for="make" class="form-label">Make</label>
+                    <input id="make" type="text" name="make" class="form-control" th:value="${Vehicle.make}">
                 </div>
                 <div class="mb-3">
-                    <label for ="model" class="form-control">model</label>
-                    <input id ="model" type="text" name="model" th:value="${Vehicle.model}">
-
+                    <label for="model" class="form-label">Model</label>
+                    <input id="model" type="text" name="model" class="form-control" th:value="${Vehicle.model}">
                 </div>
                 <div class="mb-3">
-                    <label for ="color" class="form-control">Color</label>
-                    <input id ="color" type="text" name="color" th:value="${Vehicle.color}">
-
+                    <label for="color" class="form-label">Color</label>
+                    <input id="color" type="text" name="color" class="form-control" th:value="${Vehicle.color}">
                 </div>
                 <div class="mb-3">
-                    <label for ="year" class="form-control">Year</label>
-                    <input id ="year" type="text" name="year" th:value="${Vehicle.year}">
-
+                    <label for="year" class="form-label">Year</label>
+                    <input id="year" type="text" name="year" class="form-control" th:value="${Vehicle.year}">
+                </div>
+                <div class="mb-3 form-check">
+                    <input id="rented" type="checkbox" name="rented" class="form-check-input" th:checked="${Vehicle.rented}">
+                    <label for="rented" class="form-check-label">Rented</label>
                 </div>
                 <div class="mb-3">
-                    <label for ="rented" class="form-control">rented</label>
-                    <input id ="rented" type="checkbox" name="rented" th:value="${Vehicle.rented}">
-
+                    <label for="pricePerDay" class="form-label">Price Per Day</label>
+                    <input id="pricePerDay" type="text" name="pricePerDay" class="form-control" th:value="${Vehicle.pricePerDay}">
                 </div>
-                <div class="mb-3">
-                    <label for ="pricePerDay" class="form-control">pricePerDay</label>
-                    <input id ="pricePerDay" type="text" name="pricePerDay" th:value="${Vehicle.pricePerDay}">
-
-                </div>
-
                 <button class="btn btn-primary" type="submit">Create</button>
-
             </form>
-
-
         </div>
     </div>
 </div>

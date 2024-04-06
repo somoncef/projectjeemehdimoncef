@@ -10,11 +10,11 @@
 </head>
 
 <body>
-<div layout:fragment="content">
+<div layout:fragment="content" class="container">
     <div class="p-3">
         <div class="card">
             <div class="card-header">Edit Vehicle</div>
-            <form method="post" th:action="@{save}">
+            <form method="post" th:action="@{save}" class="card-body">
 
                 <input id="id" name="id" th:value="${user.id}" readonly>
                 <input type="hidden" name="currentPage" th:value="${currentPage}">
@@ -22,16 +22,16 @@
                 <input type="hidden" name="searchName" th:value="${searchName}">
 
                 <div class="mb-3">
-                    <label for="name" class="form-control">Make</label>
-                    <input id="name" type="text" name="name" th:value="${user.name}">
+                    <label for="name" class="form-label">Name</label>
+                    <input id="name" type="text" name="name" class="form-control" th:value="${user.name}">
                 </div>
                 <div class="mb-3">
-                    <label for="email" class="form-control">Model</label>
-                    <input id="email" type="email" name="email" th:value="${user.email}">
+                    <label for="email" class="form-label">Email</label>
+                    <input id="email" type="email" name="email" class="form-control" th:value="${user.email}">
                 </div>
-                <div class="mb-3">
-                    <label for="hasActiveRental">hasActiveRental</label>
-                    <input id="hasActiveRental" type="checkbox" name="hasActiveRental" th:checked="${user.hasActiveRental}">
+                <div hidden="hidden" class="mb-3 form-check">
+                    <input id="hasActiveRental" type="checkbox" name="hasActiveRental" class="form-check-input" th:checked="${user.hasActiveRental}">
+                    <label for="hasActiveRental" class="form-check-label">Has Active Rental</label>
                 </div>
                 <button class="btn btn-primary" type="submit">Update</button>
             </form>
