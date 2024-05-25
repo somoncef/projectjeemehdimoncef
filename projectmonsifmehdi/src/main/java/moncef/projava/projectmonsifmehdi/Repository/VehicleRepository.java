@@ -10,8 +10,6 @@ import java.util.List;
 public interface VehicleRepository extends JpaRepository<Vehicle,Long> {
 
     Page<Vehicle> findByMakeContains(String name, PageRequest pageable);
-
     List<Vehicle> findByRented(boolean rented);
     Vehicle findById(long id);
-
 }
