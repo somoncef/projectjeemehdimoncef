@@ -79,11 +79,6 @@
             <artifactId>thymeleaf-layout-dialect</artifactId>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.webjars.npm/bootstrap-icons -->
-        <dependency>
-            <groupId>org.webjars.npm</groupId>
-            <artifactId>bootstrap-icons</artifactId>
-            <version>1.10.3</version>
-        </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.webjars/jquery -->
         <dependency>
